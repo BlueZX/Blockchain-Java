@@ -1,10 +1,10 @@
 # Blockchain en Java
-Es una blockchain basica implementando PoW (Proof-of-work)
+Es una blockchain basica implementando PoW (Proof-of-work), unir,generar bloques ademas de la creación de una wallet y la generacion de la clave privada y publica.
 
 Este ejemplo (de uso personal) solo es para poder entender como implementar una blockchain
   
 
-(al ejecutar con consola, sin el uso de un IDE)  
+(al ejecutar con consola, **sin** el uso de un IDE)  
 
 **compilar:** `javac -cp .;gson-2.6.2.jar;bcprov-jdk15on-159.jar BlockChain.java`  
 
