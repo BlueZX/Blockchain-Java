@@ -1,5 +1,8 @@
 import java.security.PublicKey;
 
+/* Las salidas de las transacciones mostrarán el monto final enviado a cada parte de la transacción.
+Estos, cuando se mencionan como entradas en nuevas transacciones, actúan como prueba de que tiene monedas para enviar.
+*/
 public class TransactionOutput {
 	public String id;
 	public PublicKey reciepient; //tambien conocido como el propietario de esta moneda
