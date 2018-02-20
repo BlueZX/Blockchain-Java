@@ -30,7 +30,7 @@ public class Block{
 			nonce ++;
 			hash = calculateHash();
 		}
-		System.out.println("Block Mined!! :" + hash);
+		System.out.println("El bloque fue minado exitosamente!! :" + hash);
 	}
 
 }

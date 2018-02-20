@@ -1,6 +1,6 @@
-
-import java.util.ArrayList;
+import java.util.*;
 import com.google.gson.GsonBuilder;
+import java.security.*;
 
 
 public class BlockChain{
@@ -9,7 +9,32 @@ public class BlockChain{
 
 	public static ArrayList<Block> blockchain = new ArrayList<Block>(); //aqui almacenaremos nuestra cadena de bloques, uniendolos uno detras del otro
 
+	public static Wallet walletA;
+	public static Wallet walletB;
+
 	public static void main(String[] args){
+
+		//Setup Bouncey castle as a Security Provider
+		Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider()); 
+
+		//Creando nuevas Wallet
+		walletA = new Wallet();
+		walletB = new Wallet();
+
+		//Probando las claves publica y privada
+		System.out.println("Clave Privada:");
+		System.out.println(StringUtil.getStringFromKey(walletA.privateKey));
+		System.out.println("Clave Publica:");
+		System.out.println(StringUtil.getStringFromKey(walletA.publicKey));
+
+		//Creando una transaccion de pruba de WalletA para walletB 
+		Transaction transaction = new Transaction(walletA.publicKey, walletB.publicKey, 5, null);
+		transaction.generateSignature(walletA.privateKey);
+
+		//Verificando la que la firma funcione y verificarla desde la clave pública
+		System.out.println("La firma ha sido verificada");
+		System.out.println("Es: "+ transaction.verifySignature() + "\n\n");
+
 		Block genesisBlock = new Block("este es el primer bloque","0"); //como el bloque genesis no tiene un bloque anterior, ya que es el primero, el prevHash lo pondremos como 0
 		addBlock(genesisBlock); //añadimos el genesisBlock a la blockchain...
 
@@ -51,7 +76,7 @@ public class BlockChain{
 
 			//con este if vemos si el bloque fue minando
 			if(!currentBlock.hash.substring(0, difficulty).equals(hashTarget)){
-				System.out.println("This block hasn't been mined");
+				System.out.println("Este bloque no pudo ser minado");
 				return false;
 			}
 
@@ -61,7 +86,7 @@ public class BlockChain{
 
 	//con este metodo minamos y a su vez agregamos el bloque a la blockchain
 	public static void addBlock(Block block) {
-		System.out.println("Trying to Mine block "+ (blockchain.size()+1) + " ... ");
+		System.out.println("Intentando minar el bloque "+ (blockchain.size()+1) + " ... ");
 		block.mineBlock(difficulty); //comenzamos a minar el bloque, para que este sea un bloque valido
 		blockchain.add(block); 
 	}
