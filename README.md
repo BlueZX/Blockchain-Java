@@ -1,5 +1,5 @@
 # Blockchain en Java
-Es una blockchain basica implementando PoW (Proof-of-work)
+Es una blockchain basica implementando PoW (Proof-of-work), dejando una blockchain funcional de forma local, logrando hacer transacciones de una wallet a ortra y validando si se puede realizar la transacción.
 
 Este ejemplo (de uso personal) solo es para poder entender como implementar una blockchain
   
